@@ -1,22 +1,26 @@
 const rockPaperScissors = function (n) {
 	// TODO: Your code here!
-	const possible = ['rock', 'paper', 'scissors'];
-	let tmp = [];
+	const possible = [['rock'], ['paper'], ['scissors']];
+	if (n === 1) {
+		return possible;
+	}
+	n = n || 3;
 	const result = [];
+	const before = rockPaperScissors(n - 1);
 
-	for (let i = 0; i < 3; i++) {
-		tmp.push(`${i}` + possible[i]);
-		for (let j = 0; j < n; j++) {
-			tmp.push(`${j}` + possible[j]);
-			for (let k = 0; k < n; k++) {
-				tmp.push(`${k}` + possible[k]);
-				result.push([...tmp]);
-				tmp.length--;
-			}
-			tmp.length--;
+	for (let i = 0; i < possible.length; i++) {
+		for (let j = 0; j < possible.length; j++) {
+			result.push(possible[i].concat(before[j]));
 		}
-		tmp.length--;
 	}
 
 	return result;
 };
+
+console.log(rockPaperScissors(5));
+
+// 한 줄씩 새로 작성한다.
+// n번만큼 작성할거야
+// n번째에 r, p, s가 순서대로 들어가야 해
+// n-1번째에 r, p, s가 순서대로 들어가야 해
+// ... 0번째에 r, p, s가 순서대로 들어가야 해
