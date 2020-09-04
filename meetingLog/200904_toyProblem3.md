@@ -114,7 +114,17 @@ const nthFibonacci = function (n) {
 ### 4) 하정님 코드 공유
 
 ```js
-
+const nthFibonacci = function(n) {
+  let count = 2;
+  let first = 0;
+  let second = 1;
+  if (n <= 1) return n;
+  while (count <= n) {
+    [second, first] = [second + first, second]
+    count++;
+  }
+  return second;
+};
 ```
 
 폴님: 피보나치의 거장 하정님 차례
