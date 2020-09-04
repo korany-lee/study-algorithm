@@ -266,6 +266,43 @@ const rockPaperScissors = function (n) {
 ### 4) 하정님 코드 공유
 ```js
 // codeSharing - toyProblem - 01_rockPaperScissors - dongoc.js 참고
+const rockPaperScissors = function(n) {
+  if (n === undefined) n = 3
+// n개의 자릿수까지
+// i는 글자의 자릿수를 뜻함
+  let result = [];
+  let count = 0;
+
+  while(result.length < Math.pow(3, n)) {
+    let oneCase = [];
+    for (let i = 0; i < n; i++) {
+      if (i === 0) { // i가 일의 자리라면
+        oneCase[i] = count % 3;
+      } 
+      else {
+        let digit = Math.floor(count / Math.pow(3, i))
+        while (digit >= 3) {
+          digit -= 3;
+        }
+        oneCase[i] = digit;
+      }
+    }
+    count++;
+    result.push(oneCase.reverse());
+  }
+
+  let finalResult = result.map(arr => arr.map(x => {
+    if (x === 0) {
+      return 'rock';
+    } else if (x === 1) {
+      return 'paper';
+    } else {
+      return 'scissors';
+    }
+  }))
+
+  return finalResult;
+}
 ```
 하정님 : 숫자로 시작을 했다.
 가위바위보를 012로 봤을때
@@ -273,6 +310,38 @@ const rockPaperScissors = function (n) {
 
 (폴님이 서기인줄 알았다는 변이 있었다. 
 이 부분 기억나시는 분이 계시다면 얘기 주세요.)
+
+모든 경우의 수를 숫자로 표현해서 삼진법이라는 것을 알아냄 -> 배열의 첫번째 자리는 3으로 나눈 나머지, 이후는 Math.pow(3, i)로 나눈 나머지가 3보다 작을 때까지 while문으로 빼줌.
+```js
+0 0 0     1 나머지 1 2 0
+0 0 1     2
+0 0 2     3
+0 1 0     4 3의 + 1 (3*1)
+0 1 1     5 
+0 1 2     6
+0 2 0     7 6의 + 1 (3*2)
+0 2 1     8
+0 2 2     9
+1 0 0     10 9의 + 1 (3*3) (9*1)
+1 0 1     11
+1 0 2     12
+1 1 0     13 12의 + 1 (3*4)
+1 1 1     14
+1 1 2     15
+1 2 0     16 (3*5)
+1 2 1     17
+1 2 2     18
+2 0 0     19 (3*6) (9*2)
+2 0 1
+2 0 2
+2 1 0
+2 1 1
+2 1 2
+2 2 0
+2 2 1
+2 2 2
+``` 
+
 
 참으로 brilliant하고 clever했다는 후문이..
 
