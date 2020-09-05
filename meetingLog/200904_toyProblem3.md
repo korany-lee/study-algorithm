@@ -41,6 +41,20 @@ Array.prototype.isSubsetOf = function (array) {
 ### 3) 폴님 코드 공유
 
 ```js
+Array.prototype.isSubsetOf = function (array) {
+  let arr1 = [...new Set(this)]; // merge reset 각각의 어레이를 unique value 만 남게해줌
+  let arr2 = [...new Set(array)]; // reset merge add commit
+  let storage = [];
+  for (let i = 0; i < arr1.length; i++) {
+    for (let j = 0; j < arr2.length; j++) {
+      if (arr1[i] === arr2[j]) {
+        storage.push(arr1[i]);
+      }
+    }
+  }
+  if (storage.length === arr1.length) return true;
+  else return false;
+};
 
 ```
 
@@ -64,7 +78,16 @@ Array.prototype.isSubsetOf = function (array) {
 ### 1) 폴님 코드 공유
 
 ```js
-
+const nthFibonacci = function (n) {
+  let cur = 0,
+    num1 = 0,
+    num2 = 1;
+  while (n >= 0) {
+    [cur, num1, num2] = [num1, num2, num1 + num2];
+    n--;
+  }
+  return cur;
+};
 ```
 
 ( 모두 동시에 ) 와...
