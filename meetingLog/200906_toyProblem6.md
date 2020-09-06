@@ -9,8 +9,7 @@ Roles: let todaysRole = { 진행자: 폴님, 타이머: 하정님, 서기: 규�
 Contents:
 
 
-# 연초피다 걸려서 삭발한 폴님
-![연초피다 걸려서 삭발한 폴님](../images/bowlPaul.png)
+시영 -> 폴님 : 홧팅!
 
 
 
