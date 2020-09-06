@@ -1,6 +1,12 @@
-<!-- @format -->
+# Immersive Toy Problem
 
-// SECTION
+## 005.bubbleSort
+
+Date: 200905
+
+Roles: let todaysRole = { 진행자: 고은님, 타이머: 규하님, 서기: 폴님, 리액션1: 하정님, 리액션2: 시영님}
+
+Contents:
 
 ## A. Code Sharing
 
