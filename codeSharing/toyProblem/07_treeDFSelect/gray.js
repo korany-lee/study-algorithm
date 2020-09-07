@@ -9,19 +9,33 @@ let Tree = function (value) {
 
 Tree.prototype.DFSelect = function (filter, depth = 0) {
 	// TODO: Your code here!
-	let result = [];
+	if (this.value === null) {
+		return;
+	}
+
+	const result = [];
 
 	if (filter(this.value, depth)) {
 		result.push(this.value);
 	}
 
-	if (this.children.length > 0) {
-		for (let child of this.children) {
-			result = result.concat(child.DFSelect(filter, depth + 1));
-		}
-	}
+	return result
+		.concat(this.children.map((child) => child.DFSelect(filter, depth + 1)))
+		.flat(Infinity);
 
-	return result;
+	// let result = [];
+
+	// if (filter(this.value, depth)) {
+	// 	result.push(this.value);
+	// }
+
+	// if (this.children.length > 0) {
+	// 	for (let child of this.children) {
+	// 		result = result.concat(child.DFSelect(filter, depth + 1));
+	// 	}
+	// }
+
+	// return result;
 };
 
 /*
