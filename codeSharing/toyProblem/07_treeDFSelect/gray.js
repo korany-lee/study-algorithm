@@ -22,21 +22,22 @@ Tree.prototype.DFSelect = function (filter, depth = 0) {
 	return result
 		.concat(this.children.map((child) => child.DFSelect(filter, depth + 1)))
 		.flat(Infinity);
-
-	// let result = [];
-
-	// if (filter(this.value, depth)) {
-	// 	result.push(this.value);
-	// }
-
-	// if (this.children.length > 0) {
-	// 	for (let child of this.children) {
-	// 		result = result.concat(child.DFSelect(filter, depth + 1));
-	// 	}
-	// }
-
-	// return result;
 };
+/**
+  let result = [];
+
+  if ( filter(this.value, depth) ) {
+    result.push(this.value);
+  }
+
+  if ( this.children.length > 0 ) {
+    for ( let child of this.children ) {
+      result = result.concat( child.DFSelect(filter, depth + 1) );
+    }
+  }
+
+  return result;
+ */
 
 /*
  * 이 아래로는 아무 것도 변경하지 않아도 됩니다. 자유롭게 참고하세요.
