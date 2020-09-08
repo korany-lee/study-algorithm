@@ -1,27 +1,27 @@
 const deepEquals = function (apple, orange) {
-	// TODO: Your code here!
-	const appleKeys = Object.keys(apple);
-	const orangeKeys = Object.keys(orange);
+  // TODO: Your code here!
+  const appleKeys = Object.keys(apple);
+  const orangeKeys = Object.keys(orange);
 
-	if (appleKeys.length === 0 && orangeKeys.length === 0) {
-		return true;
-	} else if (appleKeys.length !== orangeKeys.length) {
-		return false;
-	}
+  if (appleKeys.length === 0 && orangeKeys.length === 0) {
+    return true;
+  } else if (appleKeys.length !== orangeKeys.length) {
+    return false;
+  }
 
-	let result = false;
+  let result = false;
 
-	for (let key of appleKeys) {
-		if (typeof apple[key] === 'object') {
-			result = deepEquals(apple[key], orange[key]);
-		} else if (apple[key] === orange[key]) {
-			result = true;
-		} else {
-			return false;
-		}
-	}
+  for (let key of appleKeys) {
+    if (typeof apple[key] === "object") {
+      result = deepEquals(apple[key], orange[key]);
+    } else if (apple[key] === orange[key]) {
+      result = true;
+    } else {
+      return false;
+    }
+  }
 
-	return result;
+  return result;
 };
 
 /**

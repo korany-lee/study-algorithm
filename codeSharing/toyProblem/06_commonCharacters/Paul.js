@@ -1,8 +1,8 @@
 /** @format */
 
 const commonCharacters = function (string1, string2) {
-  const str1 = [...new Set(string1.replace(/\s+/g, '').split(''))];
-  const str2 = [...new Set(string2.replace(/\s+/g, '').split(''))];
+  const str1 = [...new Set(string1.replace(/\s+/g, "").split(""))];
+  const str2 = [...new Set(string2.replace(/\s+/g, "").split(""))];
   const result = [];
   for (let i = 0; i < str1.length; i++) {
     for (let j = 0; j < str2.length; j++) {
@@ -12,5 +12,7 @@ const commonCharacters = function (string1, string2) {
       }
     }
   }
-  return result.join('');
+  return result.join("");
 };
+
+commonCharacters("asdgeer", "gewgewgt");

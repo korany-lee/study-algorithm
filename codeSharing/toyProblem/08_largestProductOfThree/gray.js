@@ -1,51 +1,51 @@
 const largestProductOfThree = function (array) {
-	// TODO: Your code here!
-	if (array.length === 3) {
-		return array.reduce((a, c) => a * c);
-	}
+  // TODO: Your code here!
+  if (array.length === 3) {
+    return array.reduce((a, c) => a * c);
+  }
 
-	const isPositive = (x) => x >= 0;
-	const isNegative = (x) => x < 0;
-	const decreaseSort = (a, b) => b - a;
-	const absDecreaseSort = (a, b) => Math.abs(b) - Math.abs(a);
-	const multipleAll = (a, c) => a * c;
+  const isPositive = (x) => x >= 0;
+  const isNegative = (x) => x < 0;
+  const decreaseSort = (a, b) => b - a;
+  const absDecreaseSort = (a, b) => Math.abs(b) - Math.abs(a);
+  const multipleAll = (a, c) => a * c;
 
-	const tmpArr = array.sort(absDecreaseSort);
-	if (array.every(isPositive)) {
-		tmpArr.length = 3;
-		return tmpArr.reduce(multipleAll);
-	} else if (array.every(isNegative)) {
-		let result = tmpArr.reverse();
-		result.length = 3;
-		return result.reduce(multipleAll);
-	} else {
-		let result,
-			isMax,
-			tmp,
-			count = 3;
+  const tmpArr = array.sort(absDecreaseSort);
+  if (array.every(isPositive)) {
+    tmpArr.length = 3;
+    return tmpArr.reduce(multipleAll);
+  } else if (array.every(isNegative)) {
+    let result = tmpArr.reverse();
+    result.length = 3;
+    return result.reduce(multipleAll);
+  } else {
+    let result,
+      isMax,
+      tmp,
+      count = 3;
 
-		do {
-			isMax = false;
-			result = [...tmpArr];
-			result.length = count;
-			tmp = result.filter(isNegative);
-			if (tmp.length === 2 && !tmp.includes(-1)) {
-				isMax = true;
-			}
-			count++;
-		} while (!isMax && count < 6);
+    do {
+      isMax = false;
+      result = [...tmpArr];
+      result.length = count;
+      tmp = result.filter(isNegative);
+      if (tmp.length === 2 && !tmp.includes(-1)) {
+        isMax = true;
+      }
+      count++;
+    } while (!isMax && count < 6);
 
-		if (isMax) {
-			[first, second, ...tmp] = tmp;
-			third = result.filter(isPositive)[0];
-			result = [first, second, third];
-		} else {
-			result = tmpArr.filter(isPositive);
-			result.length = 3;
-		}
+    if (isMax) {
+      [first, second, ...tmp] = tmp;
+      third = result.filter(isPositive)[0];
+      result = [first, second, third];
+    } else {
+      result = tmpArr.filter(isPositive);
+      result.length = 3;
+    }
 
-		return result.reduce(multipleAll);
-	}
+    return result.reduce(multipleAll);
+  }
 };
 
 /**

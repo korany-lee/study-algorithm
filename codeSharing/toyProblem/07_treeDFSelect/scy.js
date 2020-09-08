@@ -4,40 +4,20 @@
 
 let Tree = function (value) {
   this.value = value;
+  this.depth = 0;
   this.children = [];
 };
 
-Tree.prototype.DFSelect = function (filter, depth = 0) {
-  // TODO: Your code here!
-  if (this.value === null) {
-    return;
-  }
-
-  const result = [];
-
-  if (filter(this.value, depth)) {
-    result.push(this.value);
-  }
-
-  return result
-    .concat(this.children.map((child) => child.DFSelect(filter, depth + 1)))
-    .flat(Infinity);
-};
-/**
-  let result = [];
-
-  if ( filter(this.value, depth) ) {
-    result.push(this.value);
-  }
-
-  if ( this.children.length > 0 ) {
-    for ( let child of this.children ) {
-      result = result.concat( child.DFSelect(filter, depth + 1) );
+Tree.prototype.DFSelect = function (filter) {
+  let arr = [];
+  if (filter(this.value, this.depth)) arr.push(this.value);
+  if (this.children) {
+    for (let child of this.children) {
+      arr = arr.concat(child.DFSelect(filter));
     }
   }
-
-  return result;
- */
+  return arr;
+};
 
 /*
  * 이 아래로는 아무 것도 변경하지 않아도 됩니다. 자유롭게 참고하세요.
@@ -50,6 +30,7 @@ Tree.prototype.DFSelect = function (filter, depth = 0) {
 Tree.prototype.addChild = function (child) {
   if (!child || !(child instanceof Tree)) {
     child = new Tree(child);
+    child.depth = this.depth + 1;
   }
 
   if (!this.isDescendant(child)) {
