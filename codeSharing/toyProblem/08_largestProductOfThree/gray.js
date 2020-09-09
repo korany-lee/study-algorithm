@@ -1,41 +1,58 @@
 const largestProductOfThree = function (array) {
+	// TODO: Your code here!
+	// 경우의 수는 양수만 3개 혹은 음수 2개 + 양수 한개.
+	// 거른 뒤 값비교해서 맥스만 리턴
+	const tmpArr = [...array].sort((a, b) => b - a);
+	const [smaller, smallest] = [
+		tmpArr[tmpArr.length - 2],
+		tmpArr[tmpArr.length - 1],
+	];
+
+	tmpArr.length = 3;
+	const largest = [...tmpArr];
+
+	return Math.max(
+		largest.reduce((a, c) => a * c),
+		tmpArr[0] * smaller * smallest
+	);
+};
+
+/*
+const largestProductOfThree = function(array) {
   // TODO: Your code here!
-  if (array.length === 3) {
-    return array.reduce((a, c) => a * c);
+  if ( array.length === 3 ) {
+    return array.reduce((a,c)=>(a*c));
   }
 
-  const isPositive = (x) => x >= 0;
-  const isNegative = (x) => x < 0;
-  const decreaseSort = (a, b) => b - a;
-  const absDecreaseSort = (a, b) => Math.abs(b) - Math.abs(a);
-  const multipleAll = (a, c) => a * c;
-
+  const isPositive = (x) => ( x >= 0 );
+  const isNegative = (x) => ( x < 0 );
+  const decreaseSort = (a, b) => ( b - a );
+  const absDecreaseSort = (a, b) => ( Math.abs(b) - Math.abs(a) );
+  const multipleAll = (a, c) => ( a * c );
+  
   const tmpArr = array.sort(absDecreaseSort);
-  if (array.every(isPositive)) {
+  if ( array.every(isPositive) ) {
     tmpArr.length = 3;
     return tmpArr.reduce(multipleAll);
-  } else if (array.every(isNegative)) {
+  } else if ( array.every(isNegative) ) {
     let result = tmpArr.reverse();
     result.length = 3;
     return result.reduce(multipleAll);
   } else {
-    let result,
-      isMax,
-      tmp,
-      count = 3;
+    let result, isMax, tmp, count = 3;
 
     do {
       isMax = false;
       result = [...tmpArr];
       result.length = count;
       tmp = result.filter(isNegative);
-      if (tmp.length === 2 && !tmp.includes(-1)) {
+      if ( tmp.length === 2 && !tmp.includes(-1) ) {
         isMax = true;
       }
       count++;
-    } while (!isMax && count < 6);
+    } while( !isMax && count < 6 )
 
-    if (isMax) {
+    if ( isMax ) {
       [first, second, ...tmp] = tmp;
       third = result.filter(isPositive)[0];
       result = [first, second, third];
@@ -44,9 +61,15 @@ const largestProductOfThree = function (array) {
       result.length = 3;
     }
 
-    return result.reduce(multipleAll);
+    let num = array.filter(isPositive);
+    num.length = 3;
+    num = num.reduce(multipleAll);
+    result = result.reduce(multipleAll)
+
+    return Math.max(num, result);
   }
 };
+*/
 
 /**
 const largestProductOfThree = function(array) {
