@@ -1,20 +1,21 @@
 /** @format */
-
-Array.prototype.isSubsetOf = function (array) {
-  let arr1 = [...new Set(this)]; // merge reset 각각의 어레이를 unique value 만 남게해줌
-  let arr2 = [...new Set(array)]; // reset merge add commit
-  let storage = [];
-  for (let i = 0; i < arr1.length; i++) {
-    for (let j = 0; j < arr2.length; j++) {
-      if (arr1[i] === arr2[j]) {
-        storage.push(arr1[i]);
-      }
-    }
-  }
-  if (storage.length === arr1.length) return true;
-  else return false;
+const Paul = () => {
+	Array.prototype.isSubsetOf = function (array) {
+		let arr1 = [...new Set(this)]; // merge reset 각각의 어레이를 unique value 만 남게해줌
+		let arr2 = [...new Set(array)]; // reset merge add commit
+		let storage = [];
+		for (let i = 0; i < arr1.length; i++) {
+			for (let j = 0; j < arr2.length; j++) {
+				if (arr1[i] === arr2[j]) {
+					storage.push(arr1[i]);
+				}
+			}
+		}
+		if (storage.length === arr1.length) return true;
+		else return false;
+	};
 };
-
+module.exports = Paul;
 /* 
 
 

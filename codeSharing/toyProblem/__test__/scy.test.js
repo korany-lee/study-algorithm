@@ -79,15 +79,16 @@ const test = (i) => {
 		describe('02_nonrepeatCharacter', () => {
 			let answer = firstNonRepeatedCharacter;
 			let ref02 = reference.firstNonRepeatedCharacter;
+			let nullValue = null;
 
 			it('1) nonrepeatCharacter should be a function', () => {
 				expect(typeof answer).toBe('function');
 			});
 			it('2) nonrepeatedCharacter should return `null` for empty string', () => {
-				expect(answer('')).toBe(null || undefined);
+				expect(answer('')).toBe(nullValue);
 			});
 			it('3) nonrepeatedCharacter should return `null` for strings that have every character repeated', () => {
-				expect(answer('XXXXXXX')).toBe(null || undefined);
+				expect(answer('XXXXXXX')).toBe(nullValue);
 			});
 			it('4) nonrepeatedCharacter should return the first nonrepeated character in the string `AABCAC`', () => {
 				expect(answer('AABCAC')).toBe('B');
