@@ -12,3 +12,5 @@ const nthFibonacci = function (n) {
 	}
 	return tmp.pop();
 };
+
+module.exports = nthFibonacci;

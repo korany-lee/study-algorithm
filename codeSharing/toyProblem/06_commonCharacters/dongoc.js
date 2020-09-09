@@ -1,9 +1,14 @@
 const commonCharacters = function (string1, string2) {
-  let args = [...arguments].map(string => string.split(' ').join('').split(''));
-  let [first, ...rest] = args;
-  first = [...new Set(first)];
-  return first.filter(letter => rest.every(string => string.includes(letter))).join('')
+	let args = [...arguments].map((string) =>
+		string.split(' ').join('').split('')
+	);
+	let [first, ...rest] = args;
+	first = [...new Set(first)];
+	return first
+		.filter((letter) => rest.every((string) => string.includes(letter)))
+		.join('');
 };
+module.exports = commonCharacters;
 
 // 재귀!로도 풀어보기
 

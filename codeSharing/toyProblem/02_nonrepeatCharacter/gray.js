@@ -25,3 +25,5 @@ const firstNonRepeatedCharacter = function (string) {
 	// 인덱스가 가장 빠른 친구를 리턴
 	return tmpArr[Math.min(...result)];
 };
+
+module.exports = firstNonRepeatedCharacter;
