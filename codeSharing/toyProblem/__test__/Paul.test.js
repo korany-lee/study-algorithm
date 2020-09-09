@@ -2,7 +2,7 @@ const reference = require('./reference');
 
 const test = (i) => {
 	if (i === 1) {
-		const rockPaperScissors = require('../01_rockPaperScissors/dongoc');
+		const rockPaperScissors = require('../01_rockPaperScissors/Paul');
 
 		describe('01_rockPaperScissors', () => {
 			let answer = rockPaperScissors;
@@ -74,7 +74,7 @@ const test = (i) => {
 		});
 	}
 	if (i === 2) {
-		const firstNonRepeatedCharacter = require('../02_nonrepeatCharacter/dongoc');
+		const firstNonRepeatedCharacter = require('../02_nonrepeatCharacter/Paul');
 
 		describe('02_nonrepeatCharacter', () => {
 			let answer = firstNonRepeatedCharacter;
@@ -111,10 +111,10 @@ const test = (i) => {
 		});
 	}
 	if (i === 3) {
-		const dongoc = require('../03_isSubsetOf/dongoc');
+		const Paul = require('../03_isSubsetOf/Paul');
 
 		describe('03_isSuubsetOf', () => {
-			dongoc();
+			Paul();
 			let result;
 
 			it('1) isSuubsetOf should be a function', () => {
@@ -145,7 +145,7 @@ const test = (i) => {
 		});
 	}
 	if (i === 4) {
-		const nthFibonacci = require('../04_nthFibonacci/dongoc');
+		const nthFibonacci = require('../04_nthFibonacci/Paul');
 
 		describe('04_nthFibonacci', () => {
 			let answer = nthFibonacci;
@@ -198,7 +198,7 @@ const test = (i) => {
 		});
 	}
 	if (i === 5) {
-		const bubbleSort = require('../05_bubbleSort/dongoc');
+		const bubbleSort = require('../05_bubbleSort/Paul');
 
 		describe('05_bubbleSort', () => {
 			let answer = bubbleSort;
@@ -242,7 +242,7 @@ const test = (i) => {
 		});
 	}
 	if (i === 6) {
-		const commonCharacters = require('../06_commonCharacters/dongoc');
+		const commonCharacters = require('../06_commonCharacters/Paul');
 
 		describe('06_commonCharacters', () => {
 			let answer = commonCharacters;
@@ -313,7 +313,7 @@ const runTest = (from = 1, to = 11) => {
 
 const init = () => {
 	// You can run all test with 0 or empty as parameter in function runTest
-	runTest();
+	runTest(2);
 
 	// Or you can run tests you want using 'from' and 'to'
 	// runTest(1, 10); // 1 ~ 10

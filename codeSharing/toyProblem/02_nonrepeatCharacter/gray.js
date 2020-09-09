@@ -19,6 +19,11 @@ const firstNonRepeatedCharacter = function (string) {
 		}
 	}
 
+	// result가 없으면 return null
+	if (result.length === 0) {
+		return null;
+	}
+
 	// 카운트가 1인 친구들의 인덱스를 찾음
 	result = result.map((x) => tmpArr.indexOf(x));
 

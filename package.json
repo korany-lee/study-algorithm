@@ -4,11 +4,14 @@
 	"description": "We are learning algorithm together",
 	"main": "index.js",
 	"scripts": {
-		"test": "jest miniGames/",
+		"test": "jest",
 		"debug": "node --inspect-brk node_modules/.bin/jest -i",
 		"test:sortSeries": "jest codeSharing/sortSeries/",
 		"test:gray": "jest codeSharing/toyProblem/__test__/gray.test.js",
-		"test:dongoc": "jest codeSharing/toyProblem/__test__/dongoc.test.js"
+		"test:dongoc": "jest codeSharing/toyProblem/__test__/dongoc.test.js",
+		"test:scy": "jest codeSharing/toyProblem/__test__/scy.test.js",
+		"test:Paul": "jest codeSharing/toyProblem/__test__/Paul.test.js",
+		"test:koeun": "jest codeSharing/toyProblem/__test__/koeun.test.js"
 	},
 	"repository": {
 		"type": "git",
