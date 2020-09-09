@@ -1,0 +1,26 @@
+{
+	"name": "algorithm_study",
+	"version": "1.0.0",
+	"description": "We are learning algorithm together",
+	"main": "index.js",
+	"scripts": {
+		"test": "jest miniGames/",
+		"debug": "node --inspect-brk node_modules/.bin/jest -i",
+		"test:sortSeries": "jest codeSharing/sortSeries/",
+		"test:gray": "jest codeSharing/toyProblem/__test__/gray.test.js",
+		"test:dongoc": "jest codeSharing/toyProblem/__test__/dongoc.test.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/QuePark/algorithm_study.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/QuePark/algorithm_study/issues"
+	},
+	"homepage": "https://github.com/QuePark/algorithm_study#readme",
+	"devDependencies": {
+		"jest": "^26.4.2"
+	}
+}
