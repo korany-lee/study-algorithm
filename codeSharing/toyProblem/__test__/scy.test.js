@@ -113,7 +113,7 @@ const test = (i) => {
 		const scy = require('../03_isSubsetOf/scy');
 
 		describe('03_isSubsetOf', () => {
-			gray();
+			scy();
 			let result;
 
 			it('1) isSuubsetOf should be a function', () => {
