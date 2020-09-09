@@ -39,3 +39,5 @@ const rockPaperScissors = function (n) {
 
 	return finalResult;
 };
+
+module.exports = rockPaperScissors;

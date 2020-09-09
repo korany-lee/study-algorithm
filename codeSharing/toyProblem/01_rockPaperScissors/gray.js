@@ -9,7 +9,7 @@ const rockPaperScissors = function (n) {
 	const before = rockPaperScissors(n - 1);
 
 	for (let i = 0; i < possible.length; i++) {
-		for (let j = 0; j < possible.length; j++) {
+		for (let j = 0; j < before.length; j++) {
 			result.push(possible[i].concat(before[j]));
 		}
 	}
@@ -17,7 +17,7 @@ const rockPaperScissors = function (n) {
 	return result;
 };
 
-console.log(rockPaperScissors(5));
+module.exports = rockPaperScissors;
 
 // 한 줄씩 새로 작성한다.
 // n번만큼 작성할거야

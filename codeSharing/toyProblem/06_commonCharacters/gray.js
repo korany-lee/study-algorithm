@@ -30,3 +30,4 @@ const commonCharacters = function (...strings) {
 		return commonCharacters(...others);
 	}
 };
+module.exports = commonCharacters;
