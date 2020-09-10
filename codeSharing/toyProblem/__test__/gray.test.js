@@ -2,7 +2,7 @@ const reference = require('./reference');
 
 const test = (i) => {
 	if (i === 1) {
-		const func = require('../01_rockPaperScissors/gray');
+		const func = require('../01_rockPaperScissors/dongoc');
 
 		describe('01_rockPaperScissors', () => {
 			let answer = func;
