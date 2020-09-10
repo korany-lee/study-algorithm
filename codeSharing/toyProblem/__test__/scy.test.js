@@ -313,7 +313,6 @@ const test = (i) => {
       it("2) DFSelect should exist on the Tree prototype", () => {
         expect(Tree.prototype.DFSelect).toBeTruthy();
       });
-      console.log(Tree.prototype.DFSelect);
     });
   }
 };
