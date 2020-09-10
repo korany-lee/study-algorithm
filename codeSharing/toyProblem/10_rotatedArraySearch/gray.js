@@ -23,24 +23,30 @@ const rotatedArraySearch = function (
 
 	if (rotated[mid] === target) {
 		return mid;
+	} else if (rotated[left] === target) {
+		return left;
+	} else if (rotated[right] === target) {
+		return right;
 	}
 
-	if (rotated[left] < rotated[mid]) {
-		if (rotated[left] < target && rotated[mid] < target) {
-			left = mid + 1;
-		} else {
+	if (rotated[left] <= rotated[mid]) {
+		if (rotated[left] <= target && rotated[mid] > target) {
 			right = mid - 1;
+		} else {
+			left = mid + 1;
 		}
 	} else {
-		if (rotated[mid] >= target && rotated[right] >= target) {
-			right = mid - 1;
-		} else {
+		if (rotated[mid] < target && rotated[right] >= target) {
 			left = mid + 1;
+		} else {
+			right = mid - 1;
 		}
 	}
 
 	return rotatedArraySearch(rotated, target, left, right);
 };
+
+module.exports = rotatedArraySearch;
 
 /**
 const rotatedArraySearch = function (rotated, target) {

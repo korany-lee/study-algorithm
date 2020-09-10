@@ -26,6 +26,8 @@ const powerSet = function (str) {
 	return resultOfPowerSet(setStr, states, 0);
 };
 
+module.exports = powerSet;
+
 /**
 // 다시풀기
   if ( str.length === 0 ) {

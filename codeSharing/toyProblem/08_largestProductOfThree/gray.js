@@ -17,6 +17,8 @@ const largestProductOfThree = function (array) {
 	);
 };
 
+module.exports = largestProductOfThree;
+
 /*
 const largestProductOfThree = function(array) {
   // TODO: Your code here!

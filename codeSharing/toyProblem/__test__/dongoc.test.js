@@ -2,10 +2,10 @@ const reference = require('./reference');
 
 const test = (i) => {
 	if (i === 1) {
-		const rockPaperScissors = require('../01_rockPaperScissors/dongoc');
+		const func = require('../01_rockPaperScissors/dongoc');
 
 		describe('01_rockPaperScissors', () => {
-			let answer = rockPaperScissors;
+			let answer = func;
 			let ref01 = reference.rockPaperScissors;
 
 			it('1) rockPaperScissors should be a function', () => {
@@ -47,7 +47,7 @@ const test = (i) => {
 					['scissors', 'scissors', 'paper'],
 					['scissors', 'scissors', 'scissors'],
 				];
-				let result = rockPaperScissors();
+				let result = answer();
 				expect(result.length).toBe(expected.length);
 				let expected_hash = {},
 					result_hash = {};
@@ -74,10 +74,10 @@ const test = (i) => {
 		});
 	}
 	if (i === 2) {
-		const firstNonRepeatedCharacter = require('../02_nonrepeatCharacter/dongoc');
+		const func = require('../02_nonrepeatCharacter/dongoc');
 
 		describe('02_nonrepeatCharacter', () => {
-			let answer = firstNonRepeatedCharacter;
+			let answer = func;
 			let ref02 = reference.firstNonRepeatedCharacter;
 			let nullValue = null;
 
@@ -111,10 +111,10 @@ const test = (i) => {
 		});
 	}
 	if (i === 3) {
-		const dongoc = require('../03_isSubsetOf/dongoc');
+		const func = require('../03_isSubsetOf/dongoc');
 
 		describe('03_isSuubsetOf', () => {
-			dongoc();
+			func();
 			let result;
 
 			it('1) isSuubsetOf should be a function', () => {
@@ -145,10 +145,10 @@ const test = (i) => {
 		});
 	}
 	if (i === 4) {
-		const nthFibonacci = require('../04_nthFibonacci/dongoc');
+		const func = require('../04_nthFibonacci/dongoc');
 
 		describe('04_nthFibonacci', () => {
-			let answer = nthFibonacci;
+			let answer = func;
 			let ref04 = reference.nthFibonacci;
 
 			it('1) nthFibonacci should be a function', () => {
@@ -198,10 +198,10 @@ const test = (i) => {
 		});
 	}
 	if (i === 5) {
-		const bubbleSort = require('../05_bubbleSort/dongoc');
+		const func = require('../05_bubbleSort/dongoc');
 
 		describe('05_bubbleSort', () => {
-			let answer = bubbleSort;
+			let answer = func;
 			let ref05 = reference.bubbleSort;
 
 			it('1) bubbleSort should be a function', () => {
@@ -242,10 +242,10 @@ const test = (i) => {
 		});
 	}
 	if (i === 6) {
-		const commonCharacters = require('../06_commonCharacters/dongoc');
+		const func = require('../06_commonCharacters/dongoc');
 
 		describe('06_commonCharacters', () => {
-			let answer = commonCharacters;
+			let answer = func;
 			let ref06 = reference.commonCharacters;
 
 			it('1) commonCharacters should be a function', () => {
@@ -300,6 +300,483 @@ const test = (i) => {
 					'yuiopa'
 				);
 				expect(result).toBe('y');
+			});
+		});
+	}
+	if (i === 7) {
+		const Tree = require('../07_treeDFSelect/dongoc');
+
+		describe('07_treeDFSelect', () => {
+			it('1) Tree should exist', () => {
+				expect(Tree).toBeTruthy();
+			});
+			it('2) DFSelect should exist on the Tree prototype', () => {
+				expect(Tree.prototype.DFSelect).toBeTruthy();
+			});
+			it('3) DFSelect should be a function', () => {
+				expect(typeof Tree.prototype.DFSelect).toEqual('function');
+			});
+			it('4) DFSelect should return an array', () => {
+				let root = new Tree('root');
+				let all = function () {
+					return true;
+				};
+				expect(Array.isArray(root.DFSelect(all))).toEqual(true);
+			});
+			it('5) DFSelect should return all nodes in the tree if filter always returns true', () => {
+				// this filter function should always return all of the nodes
+				let all = function () {
+					return true;
+				};
+				// keep a list of all nodes to compare
+				// depth: 0
+				let root = new Tree(1);
+				// depth: 1
+				root.addChild(2);
+				root.addChild(3);
+				// depth: 2
+				root.children[0].addChild(4);
+				root.children[0].addChild(5);
+				root.children[1].addChild(6);
+				root.children[1].addChild(7);
+				// depth: 3 (sparse)
+				root.children[0].children[0].addChild(8);
+				root.children[1].children[1].addChild(9);
+				let expected = [1, 2, 4, 8, 5, 3, 6, 7, 9];
+
+				// we should expect back all the nodes we added
+				let result = root.DFSelect(all);
+				expect(result.length).toBeTruthy();
+				expect(result).toEqual(expected);
+			});
+			it('6) DFSelect should return all nodes passing the filter', () => {
+				// this filter function should return all true nodes
+				let trueFilter = function (value, depth) {
+					return value === true;
+				};
+				// this filter function should return all false nodes
+				let falseFilter = function (value, depth) {
+					return value === false;
+				};
+				// keep a list of true and false nodes to compare
+				let trueNodes = [],
+					falseNodes = [],
+					result = null;
+				// depth: 0
+				let root = new Tree(false);
+				falseNodes.push(false);
+				// depth: 1
+				trueNodes.push(true), root.addChild(true);
+				falseNodes.push(false), root.addChild(false);
+				// depth: 2
+				trueNodes.push(true), root.children[0].addChild(true);
+				trueNodes.push(true), root.children[1].addChild(true);
+				falseNodes.push(false), root.children[0].addChild(false);
+				falseNodes.push(false), root.children[1].addChild(false);
+				// depth: 3 (sparse)
+				trueNodes.push(true), root.children[0].children[0].addChild(true);
+				trueNodes.push(true), root.children[1].children[0].addChild(true);
+				falseNodes.push(false), root.children[0].children[1].addChild(false);
+				falseNodes.push(false), root.children[1].children[1].addChild(false);
+
+				result = root.DFSelect(trueFilter);
+				// we expect back all the `trueNodes` using the `trueFilter`
+				expect(result).toStrictEqual(trueNodes);
+
+				result = root.DFSelect(falseFilter);
+				// we expect back all the `falseNodes` using the `falseFilter`
+				expect(result).toStrictEqual(falseNodes);
+			});
+			it('7) DFSelect should allow filtering by depth', () => {
+				// this filter constructor produces a filter for the specified depth
+				let depthFilter = function (filterDepth) {
+					return function (node, nodeDepth) {
+						return filterDepth == nodeDepth;
+					};
+				};
+				// keep a list of nodes by depth to compare
+				let nodeDepths = [],
+					deepNodes = [];
+				let root = new Tree(0);
+				// depth: 0
+				nodeDepths.push([0]);
+				// depth: 1
+				root.addChild(1);
+				root.addChild(2);
+				nodeDepths.push([1, 2]);
+				// depth: 2
+				root.children[0].addChild(3);
+				root.children[0].addChild(4);
+				root.children[1].addChild(5);
+				root.children[1].addChild(6);
+				nodeDepths.push([3, 4, 5, 6]);
+				// depth: 3 (sparse)
+				root.children[0].children[0].addChild(7);
+				root.children[0].children[0].addChild(8);
+				root.children[1].children[0].addChild(9);
+				root.children[1].children[0].addChild(10);
+				nodeDepths.push([7, 8, 9, 10]);
+
+				expect(root.DFSelect(depthFilter(0))).toStrictEqual(nodeDepths[0]);
+				expect(root.DFSelect(depthFilter(1))).toStrictEqual(nodeDepths[1]);
+				expect(root.DFSelect(depthFilter(2))).toStrictEqual(nodeDepths[2]);
+				expect(root.DFSelect(depthFilter(3))).toStrictEqual(nodeDepths[3]);
+			});
+		});
+	}
+	if (i === 8) {
+		const func = require('../08_largestProductOfThree/dongoc');
+
+		describe('08_largestProductOfThree', () => {
+			let answer = func;
+			let ref08 = reference.largestProductOfThree;
+
+			it('1) largestProductOfThree should exist', () => {
+				expect(answer).toBeTruthy();
+			});
+			it('2) largestProductOfThree should be a function', () => {
+				expect(typeof answer).toBe('function');
+			});
+			it('3) largestProductOfThree should return an integer', () => {
+				let result = answer([1, 2, 3]);
+				expect(typeof result).toBe('number');
+			});
+			it('4) largestProductOfThree should handle three positive numbers', () => {
+				let result = answer([0, 2, 3]);
+				expect(result).toBe(0);
+				result = answer([2, 3, 5]);
+				expect(result).toBe(30);
+				result = answer([7, 5, 3]);
+				expect(result).toBe(105);
+				result = answer([7, 5, 7]);
+				expect(result).toBe(245);
+			});
+			it('5) largestProductOfThree should handle more than three positive numbers', () => {
+				let arrays = [
+					[2, 5, 3, 7],
+					[11, 7, 5, 3, 2],
+					[2, 13, 7, 3, 5, 11],
+					[2, 11, 13, 7, 13, 3, 11, 5],
+				];
+				let resultOfFunction = [105, 385, 1001, 1859];
+				let result;
+				for (let i = 0; i < arrays.length; i++) {
+					result = answer(arrays[i]);
+					expect(result).toBe(resultOfFunction[i]);
+				}
+			});
+			it('6) largestProductOfThree should handle negative numbers', () => {
+				let arrays = [
+					[2, 3, -11, 7, 5, -13],
+					[-31, 41, 34, -37, -17, 29],
+					[-50, 20, 30, 5, 40],
+				];
+				let resultOfFunction = [1001, 47027, 24000];
+				let result;
+				for (let i = 0; i < arrays.length; i++) {
+					result = answer(arrays[i]);
+					expect(result).toBe(resultOfFunction[i]);
+				}
+			});
+			it('7) largestProductOfThree should handle all negative numbers', () => {
+				let arrays = [[-5, -4, -3, -2, -1]];
+				let resultOfFunction = [-6];
+				let result;
+				for (let i = 0; i < arrays.length; i++) {
+					result = answer(arrays[i]);
+					expect(result).toBe(resultOfFunction[i]);
+				}
+			});
+		});
+	}
+	if (i === 9) {
+		const func = require('../09_deepEquality/dongoc');
+
+		describe('09_deepEquals', () => {
+			let answer = func;
+			let ref09 = reference.deepEquals;
+
+			it('1) deepEquals() should exist', () => {
+				expect(answer).toBeTruthy();
+			});
+			it('2) deepEquals() should be a function', () => {
+				expect(typeof answer).toBe('function');
+			});
+			it('3) deepEquals() should return a result', () => {
+				let result = answer({}, {});
+				expect(result).toBeTruthy();
+			});
+			it('4) deepEquals() should return a boolean', () => {
+				let result = answer({}, {});
+				expect(typeof result).toBe('boolean');
+			});
+			it('5) deepEquals() should return true for two empty objects', () => {
+				let result = answer({}, {});
+				expect(result).toBe(true);
+			});
+			it('6) deepEquals() should use deep equality', () => {
+				let a = { foo: 1 };
+				let b = { foo: '1' };
+				let result = answer(a, b);
+				expect(result).toBe(false);
+			});
+			it('7) deepEquals() should return true for two objects with the same keys and values', () => {
+				let a = { foo: 'bar' };
+				let b = { foo: 'bar' };
+				let result = answer(a, b);
+				expect(result).toBe(true);
+			});
+			it('8) deepEquals() should return false for two objects with the same keys and but different values', () => {
+				let a = { foo: 'bar' };
+				let b = { foo: 'pow' };
+				let result = answer(a, b);
+				expect(result).toBe(false);
+			});
+			it('9) deepEquals() should return false for two objects with different number of keys', () => {
+				let a = { foo: 'bar' };
+				let b = { foo: 'bar', biz: 'baz' };
+				let result = answer(a, b);
+				expect(result).toBe(false);
+			});
+			it('10) deepEquals() should return false for two objects with different number of keys', () => {
+				let a = { foo: 'bar', biz: 'baz' };
+				let b = { foo: 'bar' };
+				let result = answer(a, b);
+				expect(result).toBe(false);
+			});
+			it('11) deepEquals() should return true for similar nested object properties', () => {
+				let a = { foo: 1, b: { c: 3 } };
+				let b = { foo: 1, b: { c: 3 } };
+				let result = answer(a, b);
+				expect(result).toBe(true);
+			});
+			it('12) deepEquals() should return false for dissimilar nested object properties', () => {
+				let a = { foo: 1, b: { c: 3 } };
+				let b = { foo: 1, b: { c: 'potato' } };
+				let result = answer(a, b);
+				expect(result).toBe(false);
+				result = answer(b, a);
+				expect(result).toBe(false);
+			});
+			it('13) deepEquals() should return true for similar excessively nested object properties', () => {
+				let a = { foo: 1, b: { c: { d: { e: 'potato' } } } };
+				let b = { foo: 1, b: { c: { d: { e: 'potato' } } } };
+				let result = answer(a, b);
+				expect(result).toBe(true);
+
+				a = { b: { c: { d: { e: 'potato' } } }, foo: 1 };
+				b = { foo: 1, b: { c: { d: { e: 'potato' } } } };
+				result = answer(a, b);
+				expect(result).toBe(true);
+			});
+			it('14) deepEquals() should kill Lannister', () => {
+				let a = {
+					foo: 1,
+					b: {
+						c: { d: { e: 'potato' }, f: 'zzz' },
+						k: 'wow',
+						g: { h: { i: 'Lannister' } },
+					},
+					j: 'dongoc killed Lannister!',
+				};
+				let b = {
+					foo: 1,
+					b: {
+						c: { d: { e: 'potato' }, f: 'zzz' },
+						k: 'wow',
+						g: { h: { i: 'Lannister' } },
+					},
+					j: 'dongoc killed Lannister!',
+				};
+				let result = answer(a, b);
+				expect(result).toBe(true);
+
+				a = {
+					foo: 1,
+					b: {
+						c: { d: { e: 'potato' }, f: 'zzz' },
+						k: 'wow',
+						g: { h: { i: 'Lannister' } },
+					},
+					j: 'dongoc killed Lannister!',
+				};
+				b = {
+					b: {
+						c: { d: { e: 'potato' }, f: 'zzz' },
+						g: { h: { i: 'Lannister' } },
+						k: 'wow',
+					},
+					foo: 1,
+					j: 'dongoc killed Lannister!',
+				};
+				result = answer(a, b);
+				expect(result).toBe(true);
+			});
+		});
+	}
+	if (i === 10) {
+		const func = require('../10_rotatedArraySearch/dongoc');
+
+		describe('10_rotatedArraySearch', () => {
+			let answer = func;
+			let ref10 = reference.rotatedArraySearch;
+
+			it('1) rotatedArraySearch should exist', () => {
+				expect(answer).toBeTruthy();
+			});
+			it('2) rotatedArraySearch when called on a rotated array and a value that is in the array should return a number', () => {
+				expect(typeof answer([3, 4, 5, 2], 4)).toBe('number');
+			});
+			it('3) rotatedArraySearch when called on a rotated array and a value that is in the array should return the index of that item', () => {
+				let result = answer([4, 5, 6, 0, 1, 2, 3], 1);
+				expect(result).toEqual(4);
+			});
+			it('4) rotatedArraySearch when called on a rotated array and a value that is not in the array should return null', () => {
+				let result = answer([1, 2, 3], 5);
+				expect(result).toBe(null);
+			});
+			it('5) rotatedArraySearch is same with reference', () => {
+				let inputs = [
+					[3, 4, 5, 2],
+					[4, 5, 6, 0, 1, 2, 3],
+					[1, 2, 3],
+					[7, 9, 10, 15, 5, 6],
+				];
+				let inputNum = [4, 3, 4, 6];
+				for (let i = 0; i < inputs.length; i++) {
+					expect(answer(inputs[i], inputNum[i])).toEqual(
+						ref10(inputs[i], inputNum[i])
+					);
+				}
+			});
+		});
+	}
+	if (i === 11) {
+		const func = require('../11_powerSet/dongoc');
+
+		describe('11_powerSet', () => {
+			let answer = func;
+			let ref11 = reference.powerSet;
+
+			it('1) powerSet should exist', () => {
+				expect(answer).toBeTruthy();
+			});
+			it('2) powerSet should be a function', () => {
+				expect(typeof answer).toBe('function');
+			});
+			it('3) powerSet should return something', () => {
+				let result = answer('a');
+				expect(result).toBeTruthy();
+			});
+			it('4) powerSet should return an array', () => {
+				let result = answer('a');
+				expect(Array.isArray(result)).toEqual(true);
+			});
+			it('5) powerSet should contain the original set', () => {
+				let result = answer('a');
+				expect(result.includes('a')).toEqual(true);
+			});
+			it('6) powerSet should produce a set with the original set plus sub sets', () => {
+				let result = answer('ab');
+				expect(result.includes('ab')).toEqual(true);
+				expect(result.includes('a')).toEqual(true);
+				expect(result.includes('b')).toEqual(true);
+			});
+			it('7) powerSet should work for sets of length 3', () => {
+				// recall that with sets, order doesn't matter (if order did matter, it
+				// wouldn't be called a `set`.) so the set 'abc' is equivalent to 'bca',
+				// 'cba', etc. this allows us to do `sortSet('abc') === sortSet('bca')` to
+				// easily test set equality. With that in mind, we'll just sort
+				// ahead of time each set we get back from `powerSet()`
+				let sortSet = function (set) {
+					// takes a set like 'bca' or 'cba' and returns 'abc'
+					return set.split('').sort().join('');
+				};
+				// `result` is the power set of `"fun"`
+				let result = answer('fun');
+				// sort each set in the power set
+				for (let i = 0; i < result.length; i++) {
+					result[i] = sortSet(result[i]);
+				}
+				// should include all the original characters
+				expect(
+					result.includes('f') && result.includes('u') && result.includes('n')
+				).toEqual(true);
+				// should include all sub sets of length 2
+				expect(
+					result.includes('fu') &&
+						result.includes('nu') &&
+						result.includes('fn')
+				).toEqual(true);
+				// should include the original set
+				expect(result.includes(sortSet('fun'))).toEqual(true);
+			});
+			it('8) powerSet should contain the original set for larger sets', () => {
+				// takes a set like 'bca' or 'cba' and returns 'abc'
+				let sortSet = function (set) {
+					return set.split('').sort().join('');
+				};
+				// `result` is the power set of `"jump"`
+				let result = answer('jump');
+				// sort each set in the power set
+				for (let i = 0; i < result.length; i++) {
+					result[i] = sortSet(result[i]);
+				}
+				// should include all sub sets of length 1 (aka, all the original characters)
+				expect(result.includes('j')).toEqual(true);
+				expect(result.includes('u')).toEqual(true);
+				expect(result.includes('m')).toEqual(true);
+				expect(result.includes('p')).toEqual(true);
+				// should include all sub sets of length 2
+				expect(result.includes(sortSet('ju'))).toEqual(true);
+				expect(result.includes(sortSet('jm'))).toEqual(true);
+				expect(result.includes(sortSet('jp'))).toEqual(true);
+				expect(result.includes(sortSet('um'))).toEqual(true);
+				expect(result.includes(sortSet('up'))).toEqual(true);
+				expect(result.includes(sortSet('mp'))).toEqual(true);
+				// should include all sub sets of length 3
+				expect(result.includes(sortSet('jum'))).toEqual(true);
+				expect(result.includes(sortSet('jup'))).toEqual(true);
+				expect(result.includes(sortSet('jmp'))).toEqual(true);
+				expect(result.includes(sortSet('ump'))).toEqual(true);
+				// should include the original set
+				expect(result.includes(sortSet('jump'))).toEqual(true);
+			});
+			it('9) powerSet should remove duplicates from the original set', () => {
+				// you're doing awesome! This test is more of a caveat of the fact that we're
+				// using strings to store our sets but by definition, each element in a
+				// set must be unique. because of this, you should remove duplicate items
+				// from the original set. said another way, the power set of 'bbbaaa'
+				// should be the same as the power set of 'ab'.
+
+				// takes a set like 'bca' or 'cba' and returns 'abc'
+				let sortSet = function (set) {
+					return set.split('').sort().join('');
+				};
+				// `result` is the power set of `"bbbaaa"`
+				let result = answer('bbbaaa');
+				// sort each set in the power set
+				for (let i = 0; i < result.length; i++) {
+					result[i] = sortSet(result[i]);
+				}
+				expect(result.includes('aa')).toEqual(false);
+				expect(result.includes('aaa')).toEqual(false);
+				expect(result.includes('bb')).toEqual(false);
+				expect(result.includes('bbb')).toEqual(false);
+				expect(result.includes('a')).toEqual(true);
+				expect(result.includes('b')).toEqual(true);
+				expect(result.includes('ab')).toEqual(true);
+			});
+			it('10) powerSet should include the empty set', () => {
+				// holly cannoli batman! you're kicking so much ass!! you've gotten through
+				// almost all the tests!! this is the last one, I promise. we saved this
+				// one for last because it's sort of lame but... _technically_, the power
+				// set, by definition, includes the empty set.
+				// to quote Wikipedia:
+				// > "In mathematics, the power set (or powerset) of any set S, [...] is
+				// > the set of all subsets of S, including the empty set and S itself."
+				// > -- http://en.wikipedia.org/wiki/Power_set
+				expect(answer('lame').includes('')).toEqual(true);
 			});
 		});
 	}
