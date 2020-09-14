@@ -90,6 +90,9 @@ Tree.prototype.removeChild = function (child) {
 	}
 };
 
+
+module.exports = Tree;
+
 /** pass
 Tree.prototype.BFSelect = function (filter, depth = 0, result = [], isContain = false, hasChild = false) {
   // TODO: Your code here!
