@@ -1,7 +1,21 @@
 let Range = function (start, end, step) {
-	this.start = start || 0;
-	this.end = end || start;
-	this.step = step || 1;
+	if (start === null) {
+		return null;
+	} else {
+		this.start = start || 0;
+		if (end === null || end === undefined) {
+			this.end = start || 0;
+		} else {
+			this.end = end;
+		}
+		this.step = !step
+			? start > end
+				? -1
+				: 1
+			: start > end
+			? -1 * Math.abs(step)
+			: Math.abs(step);
+	}
 };
 Range.prototype.size = function () {
 	// TODO: your solution here
@@ -23,13 +37,11 @@ Range.prototype.each = function (callback) {
 	// TODO: your solution here
 	let [count, start, end, step] = [0, this.start, this.end, this.step];
 	if (start > end) {
-		step = step > 0 ? -1 * step : step;
 		while (start >= end) {
 			callback(start);
 			start += step;
 		}
 	} else {
-		step = step > 0 ? step : -1 * step;
 		while (start <= end) {
 			callback(start);
 			start += step;
@@ -43,19 +55,69 @@ Range.prototype.includes = function (val) {
 		0,
 		Math.min(this.start, this.end),
 		Math.max(this.start, this.end),
-		this.step < 0 ? -1 * step : step,
+		this.step < 0 ? -1 * this.step : this.step,
 	];
 
 	while (min <= max) {
 		if (min === val) {
 			return true;
 		}
-		min += this.step;
+		min += step;
 	}
 	return false;
 };
 
-module.exports = Range;
+let range = new Range(1);
+/**pass
+let Range = function (start, end, step) {  
+  this.start = start || 0;
+  this.end = typeof end === 'number' ? end : end || start;
+  this.step = typeof step === 'number' ? start > end ? -1 * Math.abs(step) : Math.abs(step) : start > end ? -1 : 1;
+}
+Range.prototype.size = function () {
+  // TODO: your solution here
+  let [count, min, max, step ] = [0, Math.min(this.start, this.end), Math.max((this.start, this.end)), Math.abs(this.step)];
+  
+  while ( min <= max ) {
+    count++;
+    min += step;
+  }
+  return count;
+};
+
+Range.prototype.each = function (callback) {
+  // TODO: your solution here
+  let [count, start, end, step ] = [0, this.start, this.end, this.step];
+  if ( start > end ) {
+    step = step > 0 ? -1 * step : step;
+    while ( start >= end ) {
+      callback(start);
+      start += step;
+    }
+  } else {
+    step = step > 0 ? step : -1 * step;
+    while ( start <= end ) {
+      callback(start);
+      start += step;
+    }
+  }
+};
+
+Range.prototype.includes = function (val) {
+  // TODO: your solution here
+  let [count, min, max, step ] = [0, Math.min(this.start, this.end), Math.max(this.start, this.end), this.step < 0 ? -1 * this.step : this.step];
+  
+  while ( min <= max) {
+    if ( min === val ) {
+      return true;
+    }
+    min += this.step;
+  }
+  return false;
+};
+
+let range = new Range(1);
+ */
 
 // let Range = function (start, end, step) {
 //   start = start || 0;
@@ -170,3 +232,5 @@ module.exports = Range;
 // };
 
 // let range = new Range(1);
+
+module.exports = Range;
