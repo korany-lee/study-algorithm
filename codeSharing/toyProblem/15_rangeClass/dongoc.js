@@ -25,8 +25,9 @@ let Range = function (start, end, step) {
   Range.prototype.size = function () {
     return Math.floor(Math.abs(this.start - this.end) / Math.abs(this.step)) + 1
   
-    // 실행시간 초과 코드
+    // // 실행시간 초과 코드
     // let count = 0;
+    // // start 
     // for (let i = this.start; i <= this.end; i += this.step) {
     //   count++;
     // }
@@ -50,7 +51,7 @@ let Range = function (start, end, step) {
       [this.start, this.end] = [this.end, this.start]
     }
     if (this.start <= val && this.end >= val) {
-      if (this.start % this.step === val % this.step) {
+      if (Math.abs(this.start) % this.step === Math.abs(val) % this.step) {
         return true;
       }
     }
@@ -58,3 +59,13 @@ let Range = function (start, end, step) {
   };
   
   let range = new Range(1);
+  
+  
+  /* includes first try
+  if (this.start > val && this.start <= val) {
+    //   while(val > this.start) {
+    //     this.start += this.step
+    //   }
+    //   return this.start % val ? true : false; 
+    // } 
+  */
