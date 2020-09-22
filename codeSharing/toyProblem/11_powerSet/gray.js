@@ -5,20 +5,20 @@ const powerSet = function (str) {
 
 	const resultOfPowerSet = (arr, states, index) => {
 		let result = [];
-		if (index === setStr.length) {
-			for (let i = 0; i < setStr.length; i++) {
+		if (index === arr.length) {
+			for (let i = 0; i < arr.length; i++) {
 				if (states[i]) {
-					result.push(setStr[i]);
+					result.push(arr[i]);
 				}
 			}
 			return result.sort().join('');
 		}
 
 		states[index] = false;
-		result = result.concat(resultOfPowerSet(setStr, states, index + 1));
+		result = result.concat(resultOfPowerSet(arr, states, index + 1));
 
 		states[index] = true;
-		result = result.concat(resultOfPowerSet(setStr, states, index + 1));
+		result = result.concat(resultOfPowerSet(arr, states, index + 1));
 
 		return [...new Set(result)];
 	};
