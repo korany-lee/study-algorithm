@@ -25,5 +25,8 @@
 	"homepage": "https://github.com/QuePark/algorithm_study#readme",
 	"devDependencies": {
 		"jest": "^26.4.2"
+	},
+	"dependencies": {
+		"node": "^14.13.1"
 	}
 }
