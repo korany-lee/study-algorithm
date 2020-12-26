@@ -1,29 +1,29 @@
 const roles = ['진행자', '타이머', '서기', '리액션1', '리액션2'];
-const names = ['하정님', '시영님', '폴님', '고은님', '규하님'];
+const names = ['HJ님', 'SY님', 'PB님', 'KE님', 'GH님'];
 let values = [0, 1, 2, 3, 4];
 const members = [
 	{
-		name: '고은님',
+		name: 'KE님',
 		value: 0,
 		role: undefined,
 	},
 	{
-		name: '시영님',
+		name: 'SY님',
 		value: 0,
 		role: undefined,
 	},
 	{
-		name: '폴님',
+		name: 'PB님',
 		value: 0,
 		role: undefined,
 	},
 	{
-		name: '규하님',
+		name: 'GH님',
 		value: 0,
 		role: undefined,
 	},
 	{
-		name: '하정님',
+		name: 'HJ님',
 		value: 0,
 		role: undefined,
 	},
